@@ -1,3 +1,4 @@
+ruby '2.1.2'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -28,6 +29,23 @@ gem 'jbuilder', '~> 1.2'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc',          group: :doc, require: false
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'pry-rails', '~> 0.3.2'
+  gem 'pry-remote', '~> 0.1.8'
+  gem 'pry-stack_explorer'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-coolline'
+  gem 'pry-theme'
+  gem 'pry-rescue'
+end
+
+group :test do
+  gem 'faker', '~> 1.3.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
