@@ -47,6 +47,10 @@ group :test do
   gem 'factory_girl_rails', '~> 4.4.1'
 end
 
+group :development do
+  gem 'better_errors', '~> 1.1.0'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
