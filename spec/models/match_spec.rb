@@ -37,11 +37,17 @@ describe Match do
     end
   end
 
-  describe '#winner=' do
-    it 'checks if winner is an actual player' do
+  describe '#set_winner' do
+    let(:match) { create(:match) }
+
+    it 'returns false if player not involved' do
+      user = create(:user)
+      expect(match.set_winner(user)).to be_falsey
     end
 
     it 'sets the winner' do
+      winner = match.users.first
+      expect(match.set_winner(winner)).to be_truthy
     end
   end
 end

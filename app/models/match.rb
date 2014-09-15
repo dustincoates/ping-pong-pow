@@ -12,7 +12,17 @@ class Match < ActiveRecord::Base
     users.find(winner_id)
   end
 
+  def set_winner(user)
+    return false unless users.include?(user)
+    winner = user.id
+  end
+
   private
+
+  def winner=(user_id)
+    self.winner_id = user_id
+    self.save
+  end
 
   def defaults
     self.status = COMPLETED
