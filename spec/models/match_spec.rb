@@ -19,20 +19,10 @@ describe Match do
       expect(valid_match.status).to eql(Match::COMPLETED)
     end
 
-    describe 'should have the right number of players' do
-      let (:match) { Match.new }
-
-      it 'is valid when given the correct number of players' do
-        Match::REQUIRED_PLAYERS.times do 
-          match.users << create(:user)
-        end
-        expect(match).to be_valid
-      end
-
-      it 'throws errors not than the correct number' do
-        match.users << create(:user)
-        expect(match).to_not be_valid
-      end
+    it 'throws errors not than the correct number' do
+      match = Match.new
+      match.users << create(:user)
+      expect(match).to_not be_valid
     end
   end
 end
