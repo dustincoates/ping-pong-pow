@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140912034632) do
 
   create_table "matches", force: true do |t|
     t.string   "status"
-    t.integer  "winner"
+    t.integer  "winner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
