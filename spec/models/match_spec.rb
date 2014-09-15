@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe Match do
+  it 'has a valid factory' do
+    expect( create(:match) ).to be_valid
+  end
+
   describe 'validations' do
     let (:valid_match) {
       Match.new.tap do |match|
@@ -23,6 +27,21 @@ describe Match do
       match = Match.new
       match.users << create(:user)
       expect(match).to_not be_valid
+    end
+  end
+
+  describe '#winner' do
+    it 'returns the winner of the match' do
+      match = create(:match_with_winner)
+      expect(match.winner.id).to be_eql(match.winner_id)
+    end
+  end
+
+  describe '#winner=' do
+    it 'checks if winner is an actual player' do
+    end
+
+    it 'sets the winner' do
     end
   end
 end

@@ -8,6 +8,10 @@ class Match < ActiveRecord::Base
 
   validate :validate_users
 
+  def winner
+    users.find(winner_id)
+  end
+
   private
 
   def defaults
