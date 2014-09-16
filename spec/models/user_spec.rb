@@ -31,4 +31,35 @@ describe User do
       expect(user).to_not be_valid
     end
   end
+
+  describe '#recent_matches' do
+    it 'is empty if there are no matches' do
+      user = create(:user)
+      expect(user.recent_matches).to be_empty
+    end
+
+    it 'returns matches within two weeks' do
+      match = create(:recent_match)
+      user = match.users.last
+      expect(user.recent_matches).to_not be_empty
+    end
+
+    it 'does return an empty array when only old matches' do
+      match = create(:old_match)
+      user = match.users.last
+      expect(user.recent_matches).to be_empty
+    end
+  end
+
+  describe '#wins_in_recent_matches' do
+    it 'returns the number of wins' do
+      matches = []
+      3.times do
+        matches << create(:match_with_winner)
+      end
+      user = matches.first.winner
+      user.stub(:recent_matches).and_return(matches)
+      expect(user.wins_in_recent_matches).to eql(1)
+    end
+  end
 end

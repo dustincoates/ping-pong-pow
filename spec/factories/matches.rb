@@ -12,5 +12,17 @@ FactoryGirl.define do
         match.winner_id = match.users.first.id
       }
     end
+
+    factory :old_match do
+      after(:build) { |match| 
+        match.created_at = 3.weeks.ago
+      }
+    end
+
+    factory :recent_match do
+      after(:build) { |match| 
+        match.created_at = 1.day.ago
+      }
+    end
   end
 end
