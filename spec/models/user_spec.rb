@@ -7,9 +7,9 @@ describe User do
 
   describe 'validations' do
     let(:valid_params) do
-      { 
-        name: 'Peter Thiel', 
-        email: 'pt@foundersfund.com' 
+      {
+        name: 'Peter Thiel',
+        email: 'pt@foundersfund.com'
       }
     end
 
@@ -44,7 +44,7 @@ describe User do
       expect(user.recent_matches).to_not be_empty
     end
 
-    it 'does return an empty array when only old matches' do
+    it 'returns an empty array if no recent matches' do
       match = create(:old_match)
       user = match.users.last
       expect(user.recent_matches).to be_empty

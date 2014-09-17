@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :match do
     status 'completed'
-    after(:build) { |match| 
+    after(:build) { |match|
       2.times do
         match.users << create(:user)
       end
@@ -14,13 +14,13 @@ FactoryGirl.define do
     end
 
     factory :old_match do
-      after(:build) { |match| 
+      after(:build) { |match|
         match.created_at = 3.weeks.ago
       }
     end
 
     factory :recent_match do
-      after(:build) { |match| 
+      after(:build) { |match|
         match.created_at = 1.day.ago
       }
     end
