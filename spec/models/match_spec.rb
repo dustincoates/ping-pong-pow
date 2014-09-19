@@ -8,7 +8,7 @@ describe Match do
   describe 'validations' do
     let (:valid_match) {
       Match.new.tap do |match|
-        Match::REQUIRED_PLAYERS.times do 
+        Match::REQUIRED_PLAYERS.times do
           match.users << create(:user)
         end
       end
@@ -37,17 +37,17 @@ describe Match do
     end
   end
 
-  describe '#set_winner' do
+  describe 'sets winner' do
     let(:match) { create(:match) }
 
-    it 'returns false if player not involved' do
-      user = create(:user)
-      expect(match.set_winner(user)).to be_falsey
+    it 'sets the winner' do
+      match.winner = match.users.first
+      expect(match.winner.id).to eql(match.winner_id)
     end
 
-    it 'sets the winner' do
-      winner = match.users.first
-      expect(match.set_winner(winner)).to be_truthy
+    it 'returns error if user not associated with match' do
+      match.winner = create(:user)
+      expect(match).to_not be_valid
     end
   end
 end
