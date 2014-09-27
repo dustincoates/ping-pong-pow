@@ -1,0 +1,22 @@
+<polymer-element name="player-icon" attributes="src alt">
+  <template>
+    <style>
+      :host {
+        display: inline;
+      }
+      img {
+        display: block;
+      }
+    </style>
+    <img src="{{src}}" alt="{{alt}}">
+    <content></content>
+  </template>
+  <script>
+  (function(){
+    'use strict';
+
+    Polymer({});
+
+  })();
+  </script>
+</polymer-element>
