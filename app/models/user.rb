@@ -1,4 +1,4 @@
-g cclass User < ActiveRecord::Base
+class User < ActiveRecord::Base
   TIME_FRAMES = 2.weeks.ago
   has_and_belongs_to_many :matches
 

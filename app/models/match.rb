@@ -5,7 +5,6 @@ class Match < ActiveRecord::Base
   has_and_belongs_to_many :users
   belongs_to :winner, class_name: 'User', foreign_key: 'winner_id'
 
-
   before_save :defaults
 
   validate :validate_users, :validate_winner
