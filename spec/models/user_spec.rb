@@ -32,6 +32,11 @@ describe User do
     end
   end
 
+  describe '.sorted_by_wins' do
+    it 'returns an array wins' do
+    end
+  end
+
   describe '#recent_matches' do
     it 'is empty if there are no matches' do
       user = create(:user)
@@ -59,7 +64,7 @@ describe User do
       end
       user = matches.first.winner
       user.stub(:recent_matches).and_return(matches)
-      expect(user.wins_in_recent_matches).to eql(1)
+      expect(user.wins_in_matches(user.recent_matches)).to eql(1)
     end
   end
 end

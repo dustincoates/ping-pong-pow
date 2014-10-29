@@ -3,26 +3,13 @@ class Match < ActiveRecord::Base
   REQUIRED_PLAYERS = 2
 
   has_and_belongs_to_many :users
+  has_one :winner, class_name: 'User', foreign_key: 'winner_id'
 
   before_save :defaults
 
-  validate :validate_users
-
-  def winner
-    users.find(winner_id)
-  end
-
-  def set_winner(user)
-    return false unless users.include?(user)
-    winner = user.id
-  end
+  validate :validate_users, :validate_winner
 
   private
-
-  def winner=(user_id)
-    self.winner_id = user_id
-    self.save
-  end
 
   def defaults
     self.status = COMPLETED
@@ -30,5 +17,11 @@ class Match < ActiveRecord::Base
 
   def validate_users
     errors.add(:users, "2 players needed") unless self.users.size == REQUIRED_PLAYERS
+  end
+
+  def validate_winner
+    if winner && !users.include?(winner)
+      errors.add(:winner, "Winner is not associated with match")
+    end
   end
 end

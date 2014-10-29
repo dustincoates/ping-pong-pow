@@ -9,7 +9,7 @@ FactoryGirl.define do
 
     factory :match_with_winner do
       after(:create) { |match|
-        match.winner_id = match.users.first.id
+        match.winner = match.users.first
       }
     end
 
