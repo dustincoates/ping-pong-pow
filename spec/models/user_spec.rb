@@ -33,7 +33,11 @@ describe User do
   end
 
   describe '.sorted_by_wins' do
-    it 'returns an array wins' do
+    before :each do
+    end
+
+    it 'returns an array' do
+      expect(User.sorted_by_wins).to be_kind_of(Array)
     end
   end
 
@@ -63,7 +67,7 @@ describe User do
         matches << create(:match_with_winner)
       end
       user = matches.first.winner
-      user.stub(:recent_matches).and_return(matches)
+      User.any_instance.stub(:recent_matches).and_return(matches)
       expect(user.wins_in_matches(user.recent_matches)).to eql(1)
     end
   end
