@@ -1,0 +1,62 @@
+<polymer-element name="belt-holder" attributes="src alt">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 120px;
+        margin-left: 30px;
+      }
+
+      .belt-title {
+        text-align: center;
+        width: 95px;
+        margin-top: -15px;
+        margin-bottom: 15px;
+        color: white;
+        background-color: #FFC700;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        box-shadow: 0 2px 3px -3px #000;
+      }
+
+      .belt-title::before {
+        content: '';
+        border-left: 25px solid #FFE08B;
+        z-index: -20;
+        position: relative;
+        font-size: 20px;
+        margin-left: -30px;
+        top: 8px;
+        box-shadow: -1px 1px 3px -2px #000;
+      }
+
+      .belt-title::after {
+        content: '';
+        border-right: 25px solid #FFE08B;
+        z-index: -20;
+        position: relative;
+        font-size: 20px;
+        margin-right: -30px;
+        top: 8px;
+        box-shadow: 1px 1px 3px -2px #000;
+      }
+
+      player-icon {
+        z-index: -1;
+        position: relative;
+      }
+    </style>
+    <player-icon src="{{src}}" alt="{{alt}}"></player-icon>
+    <p class="belt-title">
+      Belt Holder
+    </p>
+  </template>
+  <script>
+  (function(){
+    'use strict';
+
+    Polymer({});
+
+  })();
+  </script>
+</polymer-element>
