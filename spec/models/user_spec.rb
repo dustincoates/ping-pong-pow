@@ -7,9 +7,9 @@ describe User do
 
   describe 'validations' do
     let(:valid_params) do
-      { 
-        name: 'Peter Thiel', 
-        email: 'pt@foundersfund.com' 
+      {
+        name: 'Peter Thiel',
+        email: 'pt@foundersfund.com'
       }
     end
 
@@ -29,6 +29,43 @@ describe User do
       User.create(valid_params)
       user = User.new(name: 'Same email', email: valid_params[:email])
       expect(user).to_not be_valid
+    end
+  end
+
+  describe '.sorted_by_wins' do
+    it 'returns an array' do
+      expect(User.sorted_by_wins).to be_kind_of(Array)
+    end
+  end
+
+  describe '#recent_matches' do
+    it 'is empty if there are no matches' do
+      user = create(:user)
+      expect(user.recent_matches).to be_empty
+    end
+
+    it 'returns matches within two weeks' do
+      match = create(:recent_match)
+      user = match.users.last
+      expect(user.recent_matches).to_not be_empty
+    end
+
+    it 'returns an empty array if no recent matches' do
+      match = create(:old_match)
+      user = match.users.last
+      expect(user.recent_matches).to be_empty
+    end
+  end
+
+  describe '#wins_in_recent_matches' do
+    it 'returns the number of wins' do
+      matches = []
+      3.times do
+        matches << create(:match_with_winner)
+      end
+      user = matches.first.winner
+      User.any_instance.stub(:recent_matches).and_return(matches)
+      expect(user.wins_in_matches(user.recent_matches)).to eql(1)
     end
   end
 end
