@@ -33,9 +33,6 @@ describe User do
   end
 
   describe '.sorted_by_wins' do
-    before :each do
-    end
-
     it 'returns an array' do
       expect(User.sorted_by_wins).to be_kind_of(Array)
     end
