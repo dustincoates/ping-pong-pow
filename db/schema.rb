@@ -18,19 +18,19 @@ ActiveRecord::Schema.define(version: 20140912034632) do
 
   create_table "matches", force: true do |t|
     t.string   "status"
-    t.integer  "winner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "matches_users", force: true do |t|
-    t.integer "match_id"
-    t.integer "user_id"
+  create_table "players", force: true do |t|
+    t.integer "match_id",                 null: false
+    t.integer "user_id",                  null: false
+    t.boolean "winner",   default: false
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",       null: false
+    t.string   "email",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
