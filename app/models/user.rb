@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :matches
+  has_many :players
+  has_many :matches, through: :players
 
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
